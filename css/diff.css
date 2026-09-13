@@ -1,0 +1,57 @@
+.diff-inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 15px;
+}
+
+.diff-result {
+    font-family: monospace;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.diff-line {
+    padding: 2px 10px;
+    margin: 0;
+    border-left: 3px solid transparent;
+}
+
+.diff-line.added {
+    background-color: #d4edda;
+    border-left-color: #28a745;
+}
+
+.diff-line.removed {
+    background-color: #f8d7da;
+    border-left-color: #dc3545;
+}
+
+.diff-line.changed {
+    background-color: #fff3cd;
+    border-left-color: #ffc107;
+}
+
+.diff-line.unchanged {
+    background-color: #f9f9f9;
+    border-left-color: #ddd;
+}
+
+.diff-label {
+    display: inline-block;
+    width: 60px;
+    font-weight: bold;
+}
+
+.diff-summary {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+}
+
+@media (max-width: 600px) {
+    .diff-inputs {
+        grid-template-columns: 1fr;
+    }
+}

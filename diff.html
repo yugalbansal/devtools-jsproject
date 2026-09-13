@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diff Checker - DevTools</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/diff.css">
+</head>
+<body>
+    <header>
+        <h1>DevTools</h1>
+    </header>
+
+    <main>
+        <a href="index.html" class="nav-link">Back to Home</a>
+        <h2>Diff Checker</h2>
+
+        <div class="container">
+            <div class="diff-inputs">
+                <div>
+                    <label for="originalText">Original Text</label>
+                    <textarea id="originalText" rows="10" placeholder="Enter original text here..."></textarea>
+                </div>
+                <div>
+                    <label for="newText">New Text</label>
+                    <textarea id="newText" rows="10" placeholder="Enter new text here..."></textarea>
+                </div>
+            </div>
+            <button id="compareBtn">Compare</button>
+        </div>
+
+        <div class="container">
+            <h3>Result</h3>
+            <div id="diffResult" class="diff-result"></div>
+        </div>
+    </main>
+
+    <footer>
+        <p>DevTools - Made by yugal</p>
+    </footer>
+
+    <script src="js/diff.js"></script>
+</body>
+</html>
