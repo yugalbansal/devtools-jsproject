@@ -1,0 +1,16 @@
+.hash-output {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#hashValue {
+    font-family: monospace;
+    font-size: 14px;
+    word-break: break-all;
+    flex: 1;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
