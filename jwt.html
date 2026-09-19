@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JWT Decoder - DevTools</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/jwt.css">
+</head>
+<body>
+    <header>
+        <h1>DevTools</h1>
+    </header>
+
+    <main>
+        <a href="index.html" class="nav-link">Back to Home</a>
+        <h2>JWT Decoder</h2>
+
+        <div class="container">
+            <label for="jwtInput">Paste JWT Token</label>
+            <textarea id="jwtInput" rows="5" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."></textarea>
+            <button id="decodeBtn">Decode JWT</button>
+            <button id="copyBtn" class="btn-secondary copy-btn">Copy Payload</button>
+        </div>
+
+        <div class="container">
+            <div class="jwt-section">
+                <h3>Header</h3>
+                <div id="jwtHeader" class="jwt-output"></div>
+            </div>
+
+            <div class="jwt-section">
+                <h3>Payload</h3>
+                <div id="jwtPayload" class="jwt-output"></div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>DevTools - A Beginner College Project</p>
+    </footer>
+
+    <script src="js/jwt.js"></script>
+</body>
+</html>
