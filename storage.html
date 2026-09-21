@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Storage Manager - DevTools</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/storage.css">
+</head>
+<body>
+    <header>
+        <h1>DevTools</h1>
+    </header>
+
+    <main>
+        <a href="index.html" class="nav-link">Back to Home</a>
+        <h2>Storage Manager</h2>
+
+        <div class="container">
+            <label for="storageKey">Key</label>
+            <input type="text" id="storageKey" placeholder="e.g. username">
+
+            <label for="storageValue">Value</label>
+            <input type="text" id="storageValue" placeholder="e.g. john123">
+
+            <label for="storageType">Storage Type</label>
+            <select id="storageType">
+                <option value="local">localStorage</option>
+                <option value="session">sessionStorage</option>
+            </select>
+
+            <button id="addBtn">Add / Update</button>
+            <button id="deleteBtn" class="btn-danger">Delete Key</button>
+            <button id="clearBtn" class="btn-danger">Clear All</button>
+        </div>
+
+        <div class="container">
+            <h3>Stored Data</h3>
+            <div id="storageDisplay"></div>
+        </div>
+    </main>
+
+    <footer>
+        <p>DevTools - A Beginner College Project</p>
+    </footer>
+
+    <script src="js/storage.js"></script>
+</body>
+</html>
