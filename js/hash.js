@@ -1,6 +1,6 @@
 const hashInput = document.getElementById('hashInput');
 const generateBtn = document.getElementById('generateBtn');
-const hashValue = document.getElementById('hashValue');
+const hashValue = document.getElementById('hashOutput');
 const copyBtn = document.getElementById('copyBtn');
 
 generateBtn.addEventListener('click', function() {
