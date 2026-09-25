@@ -9,6 +9,7 @@
     font-family: monospace;
     font-size: 14px;
     line-height: 1.6;
+    color: var(--text);
 }
 
 .diff-line {
@@ -18,23 +19,23 @@
 }
 
 .diff-line.added {
-    background-color: #d4edda;
-    border-left-color: #28a745;
+    background-color: var(--success-soft);
+    border-left-color: var(--success);
 }
 
 .diff-line.removed {
-    background-color: #f8d7da;
-    border-left-color: #dc3545;
+    background-color: var(--danger-soft);
+    border-left-color: var(--danger);
 }
 
 .diff-line.changed {
-    background-color: #fff3cd;
-    border-left-color: #ffc107;
+    background-color: var(--warning-soft);
+    border-left-color: var(--warning);
 }
 
 .diff-line.unchanged {
-    background-color: #f9f9f9;
-    border-left-color: #ddd;
+    background-color: transparent;
+    border-left-color: var(--border);
 }
 
 .diff-label {
@@ -46,7 +47,7 @@
 .diff-summary {
     margin-top: 15px;
     padding: 10px;
-    background-color: #f5f5f5;
+    background-color: var(--surface-2);
     border-radius: 4px;
 }
 

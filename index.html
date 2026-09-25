@@ -5,12 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DevTools - Home</title>
     <link rel="stylesheet" href="css/style.css">
+    <script>
+    (function () {
+        var t = localStorage.getItem('devtools-theme');
+        if (t !== 'dark' && t !== 'light') {
+            t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        document.documentElement.dataset.theme = t;
+    })();
+    </script>
 </head>
 <body>
-    <header>
-        <h1>DevTools</h1>
-        <p>A collection of useful developer utilities</p>
-    </header>
+    <nav class="site-nav">
+        <div class="nav-inner">
+            <a class="brand" href="index.html"><span class="brand-logo"></span>DevTools</a>
+            <div class="nav-links">
+                <a class="nav-link" href="diff.html">Diff</a>
+                <a class="nav-link" href="hash.html">Hash</a>
+                <a class="nav-link" href="jwt.html">JWT</a>
+                <a class="nav-link" href="storage.html">Storage</a>
+            </div>
+            <button class="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode" aria-pressed="false">
+                <span class="icon-moon">☾</span>
+                <span class="icon-sun">☀</span>
+            </button>
+        </div>
+    </nav>
 
     <main>
         <div class="cards">
@@ -36,8 +56,6 @@
         </div>
     </main>
 
-    <footer>
-        <p>DevTools - Made by yugal</p>
-    </footer>
+    <script src="js/theme.js"></script>
 </body>
 </html>

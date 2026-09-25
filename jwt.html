@@ -6,14 +6,34 @@
     <title>JWT Decoder - DevTools</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/jwt.css">
+    <script>
+    (function () {
+        var t = localStorage.getItem('devtools-theme');
+        if (t !== 'dark' && t !== 'light') {
+            t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        document.documentElement.dataset.theme = t;
+    })();
+    </script>
 </head>
 <body>
-    <header>
-        <h1>DevTools</h1>
-    </header>
+    <nav class="site-nav">
+        <div class="nav-inner">
+            <a class="brand" href="index.html"><span class="brand-logo"></span>DevTools</a>
+            <div class="nav-links">
+                <a class="nav-link" href="diff.html">Diff</a>
+                <a class="nav-link" href="hash.html">Hash</a>
+                <a class="nav-link active" aria-current="page" href="jwt.html">JWT</a>
+                <a class="nav-link" href="storage.html">Storage</a>
+            </div>
+            <button class="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode" aria-pressed="false">
+                <span class="icon-moon">☾</span>
+                <span class="icon-sun">☀</span>
+            </button>
+        </div>
+    </nav>
 
     <main>
-        <a href="index.html" class="nav-link">Back to Home</a>
         <h2>JWT Decoder</h2>
 
         <div class="container">
@@ -36,10 +56,7 @@
         </div>
     </main>
 
-    <footer>
-        <p>DevTools - Made by Yugal</p>
-    </footer>
-
+    <script src="js/theme.js"></script>
     <script src="js/jwt.js"></script>
 </body>
 </html>

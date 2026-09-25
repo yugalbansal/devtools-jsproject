@@ -1,10 +1,12 @@
 select {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border);
     border-radius: 4px;
     font-size: 14px;
     margin-bottom: 15px;
+    background-color: var(--surface);
+    color: var(--text);
 }
 
 .storage-table {
@@ -15,11 +17,11 @@ select {
     font-weight: bold;
     margin-top: 20px;
     margin-bottom: 10px;
-    color: #333;
+    color: var(--text);
 }
 
 .empty-msg {
-    color: #666;
+    color: var(--text-secondary);
     font-style: italic;
     margin-top: 10px;
 }
