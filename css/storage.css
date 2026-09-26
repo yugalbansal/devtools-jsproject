@@ -13,9 +13,23 @@ select {
     margin-top: 15px;
 }
 
+.storage-table th, .storage-table td {
+    padding: 12px 14px;
+}
+
+.storage-table td {
+    font-family: var(--font-mono);
+    font-size: 13px;
+}
+
+.storage-table tbody tr:hover {
+    background-color: var(--surface-2);
+}
+
 .storage-type {
-    font-weight: bold;
-    margin-top: 20px;
+    font-weight: 600;
+    font-size: 13px;
+    margin-top: 16px;
     margin-bottom: 10px;
     color: var(--text);
 }

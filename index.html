@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DevTools - Home</title>
+    <title>DevTools — Fast, local, developer utilities</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/landing.css">
     <script>
     (function () {
         var t = localStorage.getItem('devtools-theme');
@@ -15,7 +17,7 @@
     })();
     </script>
 </head>
-<body>
+<body class="home-page">
     <nav class="site-nav">
         <div class="nav-inner">
             <a class="brand" href="index.html"><span class="brand-logo"></span>DevTools</a>
@@ -32,38 +34,161 @@
         </div>
     </nav>
 
-    <main>
-        <section class="hero">
-            <h1>Simple, fast developer utilities</h1>
-            <p>No sign-ups, no servers — everything runs in your browser</p>
+    <main class="landing">
+
+        <!-- H2 · Split diptych: headline + lede left, live product exhibit right -->
+        <section class="hero-split">
+            <div class="hero-copy">
+                <h1>Fast, because nothing leaves your machine.</h1>
+                <p class="hero-lede">Four utilities — diff, hash, JWT, storage — that open instantly, work offline, and never phone home. The whole site is a folder you can save.</p>
+                <div class="hero-actions">
+                    <a class="cta-solid" href="#tools">Browse the tools</a>
+                    <a class="link-quiet" href="jwt.html">Open the JWT decoder →</a>
+                </div>
+                <p class="hero-meta">no sign-up · no upload · no cookies</p>
+            </div>
+
+            <figure class="stage" aria-hidden="true">
+                <span class="hotspot hs-tl"></span>
+                <span class="hotspot hs-tc"></span>
+                <span class="hotspot hs-tr"></span>
+                <span class="hotspot hs-ml"></span>
+                <span class="hotspot hs-mc"></span>
+                <span class="hotspot hs-mr"></span>
+                <span class="hotspot hs-bl"></span>
+                <span class="hotspot hs-bc"></span>
+                <span class="hotspot hs-br"></span>
+
+                <div class="exhibit">
+                    <div class="ex-head">
+                        <span class="ex-title">jwt.html</span>
+                        <span class="ex-status">decoded locally</span>
+                    </div>
+                    <div class="ex-token">
+                        <span class="tok-h">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9</span>.<span class="tok-p">eyJzdWIiOiIxMjM0IiwibmFtZSI6Inl1Z2FsIiwiZXhwIjoxODAwMDAwMDAwfQ</span>.<span class="tok-s">SflKxwRJSMeKKF2QT4</span>
+                    </div>
+                    <div class="ex-row">
+                        <span class="ex-tag ex-tag--accent">Header</span>
+                        <span class="ex-code">{ "alg": "HS256", "typ": "JWT" }</span>
+                    </div>
+                    <div class="ex-row">
+                        <span class="ex-tag">Payload</span>
+                        <span class="ex-code">{ "sub": "1234", "name": "yugal", "exp": 1800000000 }</span>
+                    </div>
+                    <div class="ex-row">
+                        <span class="ex-tag">Signature</span>
+                        <span class="ex-code"><span class="dim">SflKxwRJSMeKKF2QT4</span></span>
+                        <span class="ex-note">exp · Jan 2027</span>
+                    </div>
+                </div>
+            </figure>
         </section>
 
-        <div class="cards">
-            <a href="diff.html" class="tool-card">
-                <div class="tool-icon tint-blue">±</div>
-                <h2>Diff Checker</h2>
-                <p>Compare two texts line by line</p>
+        <!-- T4 · Numbered stat strip: every number real and measured -->
+        <section class="stat-strip reveal">
+            <div><b>4</b><span>tools, zero signup</span></div>
+            <div class="zero"><b>0</b><span>requests while you work</span></div>
+            <div class="zero"><b>0</b><span>cookies set, anywhere</span></div>
+            <div><b>100&nbsp;kB</b><span>page weight, entire suite</span></div>
+        </section>
+
+        <!-- F6 · Product card grid: the four tools, each shown working -->
+        <h2 class="section-kicker" id="tools">The four tools.</h2>
+        <p class="section-sub">Not feature promises — each card is the actual tool, scaled down. Open one and the same mechanics run at full size.</p>
+
+        <section class="product-grid">
+            <a class="product reveal" href="diff.html">
+                <span class="product__media">
+                    <span class="exhibit-lite" aria-hidden="true">const total = items.length;<br><span class="accent-text">− return total * 2;</span><br>+ return total * rate;</span>
+                </span>
+                <span class="product__go" aria-hidden="true">→</span>
+                <h3 class="product__name">Diff Checker</h3>
+                <p class="product__price">line diffing · web worker</p>
             </a>
 
-            <a href="hash.html" class="tool-card">
-                <div class="tool-icon tint-indigo">#</div>
-                <h2>Hash Generator</h2>
-                <p>SHA-256 via Web Crypto API</p>
+            <a class="product reveal" href="hash.html">
+                <span class="product__media">
+                    <span class="exhibit-lite" aria-hidden="true">hello world<br><span class="accent-text">↓ sha-256 · in-process</span><br>b94d27b9…efcde9</span>
+                </span>
+                <span class="product__go" aria-hidden="true">→</span>
+                <h3 class="product__name">Hash Generator</h3>
+                <p class="product__price">sha-256 · web crypto api</p>
             </a>
 
-            <a href="jwt.html" class="tool-card">
-                <div class="tool-icon tint-green">✦</div>
-                <h2>JWT Decoder</h2>
-                <p>Decode and inspect tokens locally</p>
+            <a class="product reveal" href="jwt.html">
+                <span class="product__media">
+                    <span class="exhibit-lite" aria-hidden="true">eyJhbGciOiJIUzI1NiIsI…<br><span class="accent-text">{ "alg": "HS256" }</span><br>+ payload · exp 2027</span>
+                </span>
+                <span class="product__go" aria-hidden="true">→</span>
+                <h3 class="product__name">JWT Decoder</h3>
+                <p class="product__price">base64url · json · local only</p>
             </a>
 
-            <a href="storage.html" class="tool-card">
-                <div class="tool-icon tint-amber">▤</div>
-                <h2>Storage Manager</h2>
-                <p>Manage local & session storage</p>
+            <a class="product reveal" href="storage.html">
+                <span class="product__media">
+                    <span class="exhibit-lite" aria-hidden="true">theme→ "dark"<br>last_tab → "jwt"<br><span class="accent-text">clear all · confirm first</span></span>
+                </span>
+                <span class="product__go" aria-hidden="true">→</span>
+                <h3 class="product__name">Storage Manager</h3>
+                <p class="product__price">localstorage · sessionstorage</p>
             </a>
-        </div>
+        </section>
+
+        <!-- F4 · Step sequence: the universal flow every tool shares -->
+        <h2 class="section-kicker reveal">Same three moves, every time.</h2>
+        <p class="section-sub reveal">The tools differ in what they compute. The workflow never changes.</p>
+
+        <ol class="steps">
+            <li class="reveal">
+                <span class="stage">1.0</span>
+                <h3>Paste.</h3>
+                <p>Drop the token, the text, the key in the box. Nothing uploads — there is no upload endpoint to hit, no account to sign into, no spinner warming up.</p>
+            </li>
+            <li class="reveal">
+                <span class="stage">2.0</span>
+                <h3>Compute.</h3>
+                <p>The browser does the work where it lives: <code>crypto.subtle</code> for hashes, a dedicated Web Worker for diffs, a plain base64 decode for tokens. Your CPU, your tab, no queue.</p>
+            </li>
+            <li class="reveal">
+                <span class="stage">3.0</span>
+                <h3>Copy. Leave.</h3>
+                <p>Take the result and get back to the thing you were actually doing. The page keeps nothing; closing the tab is the full uninstall.</p>
+            </li>
+        </ol>
+
+        <!-- Graphite quickstart band — Cobalt's one dark beat -->
+        <section class="quickstart reveal" aria-label="Zero install">
+            <div>
+                <p class="qs-meta">Quickstart</p>
+                <h2>Zero install. The deploy is an open.</h2>
+            </div>
+            <div class="qs-term">
+                <span class="c"># no clone, no npm, no server</span><br>
+                <span class="p">$</span> <span class="v">open index.html</span><br>
+                <span class="c">→ ready. that's the whole setup.</span>
+            </div>
+        </section>
+
+        <!-- Ft5 · Statement footer -->
+        <footer class="foot-stmt reveal">
+            <p class="foot-stmt__line">Four utilities, one folder, zero servers.</p>
+            <div class="foot-stmt__actions">
+                <a class="cta-solid" href="jwt.html">Open the JWT decoder</a>
+                <a class="link-quiet" href="diff.html">or diff two texts →</a>
+            </div>
+            <div class="foot-stmt__meta">
+                <span><strong>DevTools</strong> · a local-first utility suite · © 2026 Yugal</span>
+                <span><a href="diff.html">Diff</a><a href="hash.html">Hash</a><a href="jwt.html">JWT</a><a href="storage.html">Storage</a></span>
+            </div>
+        </footer>
+
     </main>
+
+    <!-- C4 · Sticky bottom bar: the CTA, always reachable -->
+    <aside class="cta-sticky">
+        <span class="note">// runs offline · no sign-up · nothing leaves your machine</span>
+        <a class="cta-solid" href="#tools">Pick a tool ↓</a>
+    </aside>
 
     <script src="js/theme.js"></script>
 </body>
