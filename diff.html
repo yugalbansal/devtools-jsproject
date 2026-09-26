@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Diff Checker - DevTools</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/diff.css">
     <script>
@@ -34,17 +35,23 @@
     </nav>
 
     <main>
-        <h2>Diff Checker</h2>
+        <div class="page-head">
+            <div class="tool-icon tint-blue">±</div>
+            <div>
+                <h1 class="page-title">Diff Checker</h1>
+                <p class="page-desc">Compare two texts and find differences line by line</p>
+            </div>
+        </div>
 
         <div class="container">
             <div class="diff-inputs">
                 <div>
                     <label for="originalText">Original Text</label>
-                    <textarea id="originalText" rows="10" placeholder="Enter original text here..."></textarea>
+                    <textarea id="originalText" class="mono" rows="10" placeholder="Enter original text here..."></textarea>
                 </div>
                 <div>
                     <label for="newText">New Text</label>
-                    <textarea id="newText" rows="10" placeholder="Enter new text here..."></textarea>
+                    <textarea id="newText" class="mono" rows="10" placeholder="Enter new text here..."></textarea>
                 </div>
             </div>
             <button id="compareBtn">Compare</button>

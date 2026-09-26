@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hash Generator - DevTools</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/hash.css">
     <script>
@@ -34,11 +35,17 @@
     </nav>
 
     <main>
-        <h2>Hash Generator</h2>
+        <div class="page-head">
+            <div class="tool-icon tint-indigo">#</div>
+            <div>
+                <h1 class="page-title">Hash Generator</h1>
+                <p class="page-desc">Generate SHA-256 hashes from text using Web Crypto API</p>
+            </div>
+        </div>
 
         <div class="container">
             <label for="hashInput">Enter Text</label>
-            <textarea id="hashInput" rows="6" placeholder="Type or paste text here..."></textarea>
+            <textarea id="hashInput" class="mono" rows="6" placeholder="Type or paste text here..."></textarea>
             <button id="generateBtn">Generate SHA-256</button>
         </div>
 
