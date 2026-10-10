@@ -12,9 +12,9 @@ DevTools is a multi-tool web application that bundles four commonly needed devel
 
 | Tool | Purpose |
 |------|---------|
-| **Diff Checker** | Compares two blocks of text line by line and highlights added, removed and changed lines |
-| **Hash Generator** | Produces a SHA-256 hash of any input text |
-| **JWT Decoder** | Decodes the header and payload of a JSON Web Token |
+| **Diff Checker** | Compares two blocks of text line by line and highlights only the added, removed and changed lines, both in the result and inside the input boxes |
+| **Hash Generator** | Produces a SHA-256 hash of text or a file, and verifies it against an expected hash |
+| **JWT Decoder** | Decodes the header and payload of a JSON Web Token and shows whether it has expired |
 | **API Tester** | Sends HTTP requests (GET, POST, PUT, PATCH, DELETE) and shows the status, response time, headers and formatted body |
 
 Each tool lives on its own page and shares a common visual theme, so the site behaves like one consistent application rather than four separate scripts.
@@ -39,19 +39,25 @@ Each tool lives on its own page and shares a common visual theme, so the site be
 
 ### 3.1 Diff Checker
 - Two input areas: *Original Text* and *New Text*.
-- Comparison is performed **line by line** using arrays, loops and conditional checks.
+- Comparison uses the **LCS (Longest Common Subsequence)** algorithm: a dynamic-programming table finds the most lines both texts share, so inserting one line does not mark every line after it as changed.
+- A removed line directly followed by an added line is shown as one **Changed** line.
+- Only differences are listed; unchanged lines are hidden.
+- The changed lines are also coloured inside the input boxes. A textarea cannot colour its own text, so a background `div` with the same text and font sits behind a transparent textarea, and its scroll position follows the textarea.
 - Each line is classified as **Added**, **Removed**, **Changed** or **Unchanged**, with colour-coded output and a summary count.
-- The comparison runs inside a dedicated **Web Worker** (`diffWorker.js`) so the UI stays responsive even for large inputs. The main script communicates with it through `postMessage()` / `onmessage`.
+- The comparison runs inside a dedicated **Web Worker** (`diffWorker.js`) so the UI stays responsive even for large inputs, since LCS takes O(n × m) time. The main script communicates with it through `postMessage()` / `onmessage`.
 
 ### 3.2 Hash Generator
-- Accepts any text and computes its **SHA-256** digest using `crypto.subtle.digest()`.
+- Accepts text or **any file** and computes its **SHA-256** digest using `crypto.subtle.digest()`. Files are read as bytes with `file.arrayBuffer()`.
+- An optional **Expected Hash** field verifies a downloaded file: *Match* means it is identical to the original, *No match* means it was changed or corrupted.
 - The resulting digest is converted to a hexadecimal string and displayed.
 - A **Copy** button writes the hash to the clipboard via `navigator.clipboard.writeText()`.
 
 ### 3.3 JWT Decoder
 - Splits the token on `.` into its three standard segments.
-- Converts **Base64URL** encoding to standard Base64 (character replacement plus padding), decodes it with `atob()`, and parses the result with `JSON.parse()`.
+- Converts **Base64URL** encoding to standard Base64 (character replacement plus padding), decodes it with `atob()`, rebuilds the bytes as **UTF-8** with `TextDecoder` (so non-English text decodes correctly), and parses the result with `JSON.parse()`.
 - Displays the formatted **Header** and **Payload**; invalid or malformed tokens show an *Invalid JWT* message.
+- Reads the `iat` and `exp` claims (Unix seconds) and shows the issue date and a **Valid until / Expired on** badge.
+- Decoding does not verify the signature; the page says so, since anyone can read a JWT but only the secret key proves it is genuine.
 - The decoded payload can be copied with one click.
 
 ### 3.4 API Tester
@@ -83,8 +89,8 @@ DevTools/
 │   └── api.css         API Tester styling
 └── js/
     ├── diff.js         Diff UI + worker communication
-    ├── diffWorker.js   Web Worker: line-by-line comparison logic
-    ├── hash.js         SHA-256 generation + clipboard copy
+    ├── diffWorker.js   Web Worker: LCS diff logic
+    ├── hash.js         SHA-256 of text/files, hash verification, copy
     ├── jwt.js          Base64URL decoding + JSON parsing
     └── api.js          Fetch requests, AbortController, localStorage history
 ```

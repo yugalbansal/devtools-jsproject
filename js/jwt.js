@@ -3,6 +3,7 @@ const decodeBtn = document.getElementById('decodeBtn');
 const copyBtn = document.getElementById('copyBtn');
 const jwtHeader = document.getElementById('jwtHeader');
 const jwtPayload = document.getElementById('jwtPayload');
+const jwtStatus = document.getElementById('jwtStatus');
 
 decodeBtn.addEventListener('click', function() {
     const token = jwtInput.value.trim();
@@ -31,6 +32,8 @@ decodeBtn.addEventListener('click', function() {
 
         jwtHeader.textContent = JSON.stringify(header, null, 2);
         jwtPayload.textContent = JSON.stringify(payload, null, 2);
+
+        showExpiry(payload);
     } catch (error) {
         showError('Invalid JWT');
     }
@@ -46,7 +49,43 @@ function decodeBase64Url(str) {
         base64 += '=';
     }
 
-    return atob(base64);
+    // atob gives one character per byte, so non-English text (like "José")
+    // would come out broken. TextDecoder joins the bytes back as UTF-8.
+    const binary = atob(base64);
+    const bytes = new Uint8Array(binary.length);
+    for (let i = 0; i < binary.length; i++) {
+        bytes[i] = binary.charCodeAt(i);
+    }
+
+    return new TextDecoder('utf-8').decode(bytes);
+}
+
+// exp and iat are Unix timestamps in seconds, not milliseconds
+function showExpiry(payload) {
+    jwtStatus.className = 'jwt-status';
+
+    if (payload.exp === undefined) {
+        jwtStatus.textContent = 'No expiry (exp) in this token.';
+        return;
+    }
+
+    const expDate = new Date(payload.exp * 1000);
+    let text = '';
+
+    if (payload.iat !== undefined) {
+        text += 'Issued: ' + new Date(payload.iat * 1000).toLocaleString() + '  |  ';
+    }
+
+    if (Date.now() > expDate.getTime()) {
+        text += 'Expired on ' + expDate.toLocaleString();
+        jwtStatus.classList.add('expired');
+    } else {
+        text += 'Valid until ' + expDate.toLocaleString();
+        jwtStatus.classList.add('valid');
+    }
+
+    // Decoding only reads the token, it does not prove it is genuine
+    jwtStatus.textContent = text + '  (signature not verified)';
 }
 
 function showError(message) {
@@ -54,6 +93,8 @@ function showError(message) {
     jwtHeader.classList.add('error');
     jwtPayload.textContent = '';
     jwtPayload.classList.remove('error');
+    jwtStatus.textContent = '';
+    jwtStatus.className = 'jwt-status';
 }
 
 // Copy payload to clipboard

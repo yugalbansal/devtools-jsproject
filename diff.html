@@ -47,17 +47,22 @@
             <div class="diff-inputs">
                 <div>
                     <label for="originalText">Original Text</label>
-                    <textarea id="originalText" class="mono" rows="10" placeholder="Enter original text here...">function calculateTotal(items) {
+                    <div class="editor">
+                        <div id="originalBg" class="editor-bg mono" aria-hidden="true"></div>
+                        <textarea id="originalText" class="mono" rows="10" placeholder="Enter original text here...">function calculateTotal(items) {
     let total = 0;
     for (let i = 0; i &lt; items.length; i++) {
         total += items[i].price;
     }
     return total;
 }</textarea>
+                    </div>
                 </div>
                 <div>
                     <label for="newText">New Text</label>
-                    <textarea id="newText" class="mono" rows="10" placeholder="Enter new text here...">function calculateTotal(items, taxRate) {
+                    <div class="editor">
+                        <div id="newBg" class="editor-bg mono" aria-hidden="true"></div>
+                        <textarea id="newText" class="mono" rows="10" placeholder="Enter new text here...">function calculateTotal(items, taxRate) {
     let total = 0;
     for (let i = 0; i &lt; items.length; i++) {
         total += items[i].price * items[i].quantity;
@@ -65,6 +70,7 @@
     return total + total * taxRate;
 }
 console.log(calculateTotal(cart, 0.18));</textarea>
+                    </div>
                 </div>
             </div>
             <button id="compareBtn">Compare</button>

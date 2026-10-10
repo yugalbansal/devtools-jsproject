@@ -9,3 +9,38 @@
     border-radius: 4px;
     color: var(--text);
 }
+
+.file-input {
+    display: block;
+    margin-bottom: 15px;
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.hash-match {
+    margin-top: 12px;
+    font-size: 13px;
+}
+
+.hash-match:empty {
+    display: none;
+}
+
+.hash-match.match,
+.hash-match.no-match {
+    padding: 10px 14px;
+    border-radius: var(--radius-md);
+    border: 1px solid;
+}
+
+.hash-match.match {
+    background-color: var(--success-soft);
+    color: var(--success);
+    border-color: var(--success);
+}
+
+.hash-match.no-match {
+    background-color: var(--danger-soft);
+    color: var(--danger);
+    border-color: var(--danger);
+}

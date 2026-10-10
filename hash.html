@@ -39,19 +39,27 @@
             <div class="tool-icon tint-indigo">#</div>
             <div>
                 <h1 class="page-title">Hash Generator</h1>
-                <p class="page-desc">Generate SHA-256 hashes from text using Web Crypto API</p>
+                <p class="page-desc">Generate SHA-256 hashes from text or files using Web Crypto API</p>
             </div>
         </div>
 
         <div class="container">
             <label for="hashInput">Enter Text</label>
             <textarea id="hashInput" class="mono" rows="6" placeholder="Type or paste text here...">hello world</textarea>
+
+            <label for="hashFile">Or Choose a File</label>
+            <input type="file" id="hashFile" class="file-input">
+
+            <label for="expectedHash">Expected Hash (optional)</label>
+            <input type="text" id="expectedHash" class="mono" placeholder="Paste the hash from the download page to verify the file">
+
             <button id="generateBtn">Generate SHA-256</button>
         </div>
 
         <div class="container">
             <h3>Result</h3>
             <div id="hashOutput" class="hash-output"></div>
+            <div id="hashMatch" class="hash-match"></div>
             <button id="copyBtn">Copy</button>
         </div>
     </main>

@@ -62,6 +62,62 @@
     color: var(--text-secondary);
 }
 
+/* Highlighted input boxes: a coloured div sits behind a transparent textarea */
+.editor {
+    position: relative;
+    margin-bottom: 14px;
+    background-color: var(--surface);
+    border-radius: var(--radius-sm);
+}
+
+.editor textarea,
+.editor-bg {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    line-height: 1.6;
+    padding: 10px 12px;
+    border: 1px solid transparent;
+    white-space: pre;
+    tab-size: 4;
+}
+
+.editor textarea {
+    position: relative;
+    z-index: 1;
+    display: block;
+    margin-bottom: 0;
+    background-color: transparent;
+    border-color: var(--border);
+    overflow: auto;
+    overflow-wrap: normal;
+}
+
+.editor-bg {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    color: transparent;
+    pointer-events: none;
+}
+
+.bg-line {
+    margin: 0 -12px;
+    padding: 0 12px;
+    min-width: max-content;
+}
+
+.bg-line.added {
+    background-color: var(--success-soft);
+}
+
+.bg-line.removed {
+    background-color: var(--danger-soft);
+}
+
+.bg-line.changed {
+    background-color: var(--warning-soft);
+}
+
 @media (max-width: 600px) {
     .diff-inputs {
         grid-template-columns: 1fr;

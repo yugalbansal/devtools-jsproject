@@ -29,3 +29,31 @@
     color: var(--danger);
     border-color: var(--danger);
 }
+
+.jwt-status {
+    font-size: 13px;
+    margin-bottom: 24px;
+}
+
+.jwt-status:empty {
+    display: none;
+}
+
+.jwt-status.valid,
+.jwt-status.expired {
+    padding: 10px 14px;
+    border-radius: var(--radius-md);
+    border: 1px solid;
+}
+
+.jwt-status.valid {
+    background-color: var(--success-soft);
+    color: var(--success);
+    border-color: var(--success);
+}
+
+.jwt-status.expired {
+    background-color: var(--danger-soft);
+    color: var(--danger);
+    border-color: var(--danger);
+}
