@@ -1,0 +1,127 @@
+.request-row {
+    display: flex;
+    gap: 8px;
+}
+
+.method-select {
+    width: 120px;
+    flex: none;
+    font-family: var(--font-mono);
+    font-weight: 600;
+}
+
+.api-status {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    background-color: var(--surface-2);
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+    min-height: 40px;
+}
+
+.api-status.success {
+    background-color: var(--success-soft);
+    color: var(--success);
+    border-color: var(--success);
+}
+
+.api-status.error {
+    background-color: var(--danger-soft);
+    color: var(--danger);
+    border-color: var(--danger);
+}
+
+.api-section {
+    margin-bottom: 20px;
+}
+
+.api-section:last-child {
+    margin-bottom: 0;
+}
+
+.api-label {
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--text);
+    margin-bottom: 10px;
+}
+
+.api-output {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    line-height: 1.7;
+    background-color: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 16px 18px;
+    white-space: pre-wrap;
+    word-break: break-all;
+    color: var(--text);
+    max-height: 400px;
+    overflow: auto;
+}
+
+.history-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    margin-bottom: 8px;
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: 13px;
+}
+
+.history-item:hover {
+    background-color: var(--surface-2);
+    border-color: var(--primary);
+}
+
+.method-tag {
+    font-weight: 600;
+    color: var(--primary);
+    width: 60px;
+    flex: none;
+}
+
+.history-url {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--text);
+}
+
+.history-status {
+    color: var(--text-secondary);
+}
+
+.empty-msg {
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+h3 .action-btn {
+    float: right;
+}
+
+button:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+}
+
+@media (max-width: 600px) {
+    .request-row {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .method-select {
+        width: 100%;
+    }
+}

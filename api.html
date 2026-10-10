@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Tester - DevTools</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/api.css">
+    <script>
+    (function () {
+        var t = localStorage.getItem('devtools-theme');
+        if (t !== 'dark' && t !== 'light') {
+            t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        document.documentElement.dataset.theme = t;
+    })();
+    </script>
+</head>
+<body>
+    <nav class="site-nav">
+        <div class="nav-inner">
+            <a class="brand" href="index.html"><span class="brand-logo"></span>DevTools</a>
+            <div class="nav-links">
+                <a class="nav-link" href="diff.html">Diff</a>
+                <a class="nav-link" href="hash.html">Hash</a>
+                <a class="nav-link" href="jwt.html">JWT</a>
+                <a class="nav-link active" aria-current="page" href="api.html">API</a>
+            </div>
+            <button class="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode" aria-pressed="false">
+                <span class="icon-moon">☾</span>
+                <span class="icon-sun">☀</span>
+            </button>
+        </div>
+    </nav>
+
+    <main>
+        <div class="page-head">
+            <div class="tool-icon tint-amber">⇄</div>
+            <div>
+                <h1 class="page-title">API Tester</h1>
+                <p class="page-desc">Send HTTP requests and inspect the response using the Fetch API</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <label for="apiUrl">Request</label>
+            <div class="request-row">
+                <select id="apiMethod" class="method-select">
+                    <option value="GET">GET</option>
+                    <option value="POST">POST</option>
+                    <option value="PUT">PUT</option>
+                    <option value="PATCH">PATCH</option>
+                    <option value="DELETE">DELETE</option>
+                </select>
+                <input type="text" id="apiUrl" class="mono" placeholder="https://jsonplaceholder.typicode.com/todos/1" value="https://jsonplaceholder.typicode.com/todos/1">
+            </div>
+
+            <label for="apiHeaders">Headers (one per line, Key: Value)</label>
+            <textarea id="apiHeaders" class="mono" rows="3" placeholder="Content-Type: application/json">Accept: application/json</textarea>
+
+            <label for="apiBody">Body (JSON, ignored for GET)</label>
+            <textarea id="apiBody" class="mono" rows="5" placeholder='{ "title": "hello" }'></textarea>
+
+            <button id="sendBtn">Send Request</button>
+            <button id="cancelBtn" class="btn-danger" disabled>Cancel</button>
+        </div>
+
+        <div class="container">
+            <h3>Response</h3>
+            <div id="apiStatus" class="api-status"></div>
+
+            <div class="api-section">
+                <p class="api-label">Body <button id="copyBtn" class="btn-secondary copy-btn">Copy</button></p>
+                <div id="apiResponse" class="api-output"></div>
+            </div>
+
+            <div class="api-section">
+                <p class="api-label">Headers</p>
+                <div id="apiResHeaders" class="api-output"></div>
+            </div>
+        </div>
+
+        <div class="container">
+            <h3>History <button id="clearHistoryBtn" class="btn-danger action-btn">Clear History</button></h3>
+            <div id="historyList"></div>
+        </div>
+    </main>
+
+    <script src="js/theme.js"></script>
+    <script src="js/api.js"></script>
+</body>
+</html>

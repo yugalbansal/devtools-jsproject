@@ -15,7 +15,7 @@ DevTools is a multi-tool web application that bundles four commonly needed devel
 | **Diff Checker** | Compares two blocks of text line by line and highlights added, removed and changed lines |
 | **Hash Generator** | Produces a SHA-256 hash of any input text |
 | **JWT Decoder** | Decodes the header and payload of a JSON Web Token |
-| **Storage Manager** | Creates, views and deletes key-value pairs in localStorage and sessionStorage |
+| **API Tester** | Sends HTTP requests (GET, POST, PUT, PATCH, DELETE) and shows the status, response time, headers and formatted body |
 
 Each tool lives on its own page and shares a common visual theme, so the site behaves like one consistent application rather than four separate scripts.
 
@@ -27,7 +27,8 @@ Each tool lives on its own page and shares a common visual theme, so the site be
 - Demonstrate practical use of modern **browser platform APIs**:
   - **Web Crypto API** — secure SHA-256 hashing
   - **Web Workers** — background processing for the diff engine
-  - **Web Storage API** — persistent and session-scoped key-value storage
+  - **Fetch API + AbortController** — sending HTTP requests and cancelling them
+  - **Web Storage API** — request history and theme saved in localStorage
   - **Clipboard API** — one-click copy of generated output
 - Keep the architecture straightforward: static pages, plain JavaScript and readable code that can be walked through line by line.
 - Ensure the project runs by simply opening `index.html` in a browser — no build step, no server, no dependencies to install.
@@ -53,11 +54,13 @@ Each tool lives on its own page and shares a common visual theme, so the site be
 - Displays the formatted **Header** and **Payload**; invalid or malformed tokens show an *Invalid JWT* message.
 - The decoded payload can be copied with one click.
 
-### 3.4 Storage Manager
-- Supports both **localStorage** (persistent) and **sessionStorage** (per-tab session).
-- Provides **Add / Update**, **Delete Key**, **Clear All** operations and a per-row delete button.
-- Stored data is rendered as tables generated with JavaScript template literals.
-- Exercises `setItem()`, `getItem()`, `removeItem()` and `clear()` for both storage objects.
+### 3.4 API Tester
+- Choose an HTTP method, enter a URL, optional headers (one `Key: Value` per line) and a JSON body.
+- Sends the request with `fetch()` and measures the response time with `performance.now()`.
+- Shows the status code and text (green for 2xx via `response.ok`, red otherwise), response headers and the body, pretty-printed when it is JSON.
+- A **Cancel** button aborts a running request using `AbortController`.
+- The last 10 requests (including failed ones) are saved in **localStorage**, so history survives a reload; clicking a history row loads it back into the form and shows a "Loaded from history" message.
+- Requests come from the browser, so APIs that do not allow cross-origin requests (CORS) are blocked and reported as a failed request.
 
 ---
 
@@ -71,19 +74,19 @@ DevTools/
 ├── diff.html           Diff Checker page
 ├── hash.html           Hash Generator page
 ├── jwt.html            JWT Decoder page
-├── storage.html        Storage Manager page
+├── api.html            API Tester page
 ├── css/
 │   ├── style.css       Shared theme: layout, cards, buttons, tables, forms
 │   ├── diff.css        Diff-specific result styling
 │   ├── hash.css        Hash output styling
 │   ├── jwt.css         JWT output styling
-│   └── storage.css     Storage table styling
+│   └── api.css         API Tester styling
 └── js/
     ├── diff.js         Diff UI + worker communication
     ├── diffWorker.js   Web Worker: line-by-line comparison logic
     ├── hash.js         SHA-256 generation + clipboard copy
     ├── jwt.js          Base64URL decoding + JSON parsing
-    └── storage.js      Web Storage CRUD + table rendering
+    └── api.js          Fetch requests, AbortController, localStorage history
 ```
 
 ### 4.2 Design Decisions
@@ -98,7 +101,7 @@ DevTools/
 - **Diff Checker:** textareas → `diff.js` → `postMessage()` → `diffWorker.js` → result object → `onmessage` → colour-coded HTML output.
 - **Hash Generator:** text → `TextEncoder` → `crypto.subtle.digest('SHA-256')` → hex string → display / clipboard.
 - **JWT Decoder:** token string → split on `.` → Base64URL → Base64 → `atob()` → `JSON.parse()` → formatted header/payload.
-- **Storage Manager:** form inputs → Web Storage API → read both storage objects → HTML tables via template literals.
+- **API Tester:** form inputs → headers object → `fetch()` with an AbortController signal → status, headers, body → display + save to localStorage history.
 
 ---
 
@@ -121,5 +124,5 @@ No installation, build step or server is required.
 - Support for additional hash algorithms such as SHA-1 and SHA-512, along with hashing of uploaded files instead of plain text.
 - Optional JWT signature verification by accepting a secret or public key from the user.
 - Ability to export diff results as a unified diff / patch file.
-- Import and export of stored key-value pairs as a JSON backup.
+- Import a cURL command into the API Tester and export requests as cURL.
 - A dark mode toggle shared across all tool pages.
